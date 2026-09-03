@@ -67,8 +67,10 @@ def validate() -> list[str]:
         errors.append("pm-requirement-framer must exist")
     else:
         framer_skill = framer_path.read_text(encoding="utf-8")
-        if "不输出 PRD" not in framer_skill or "PRD 就绪" not in framer_skill:
+        if "不输出详细 PRD" not in framer_skill or "PRD 就绪" not in framer_skill:
             errors.append("pm-requirement-framer must own framing and enforce the PRD boundary")
+        if "功能模块与能力" not in framer_skill or "核心用户路径" not in framer_skill:
+            errors.append("pm-requirement-framer must produce a product-level solution outline")
 
     prd_skill = (ROOT / "pm-prd-writer/SKILL.md").read_text(encoding="utf-8")
     if "产品需求框架" not in prd_skill or "pm-requirement-framer" not in prd_skill:

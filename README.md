@@ -57,7 +57,7 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 | Skill | 干什么 |
 |-------|--------|
 | `pm-master` | **全局总控**：分诊问题 → 路由 Skill → 编排工作流链路 |
-| `pm-requirement-framer` | 把模糊想法整理成经过确认、可以进入 PRD 的需求框架 |
+| `pm-requirement-framer` | 把模糊想法整理成方向、产品方案大纲、功能模块和核心能力 |
 | `pm-prd-writer` | 根据已确认的需求框架编写可开发、可测试、可评审的 PRD |
 | `pm-review-board` | 模拟 6 个角色同时喷你的需求，提前发现问题 |
 | `pm-prioritization-engine` | RICE/ICE/Kano 三套模型同时打分，需求排序不再拍脑袋 |

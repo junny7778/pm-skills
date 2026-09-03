@@ -17,7 +17,7 @@ description: |
 
 | Skill | 一句话职责 | 典型输入 → 输出 |
 |-------|-----------|----------------|
-| `pm-requirement-framer` | 模糊需求 → 已确认需求框架 | 想法/反馈/会议纪要 → 方向比较 + 范围 + PRD 就绪结论 |
+| `pm-requirement-framer` | 模糊需求 → 已确认需求框架 | 想法/反馈/会议纪要 → 方向判断 + 方案大纲 + 功能模块与能力 + PRD 就绪结论 |
 | `pm-prd-writer` | 已确认需求框架 → 可评审 PRD | 需求框架/现有 PRD → PRD + 待确认项清单 |
 | `pm-review-board` | 六角色模拟评审 | PRD/原型 → 分级问题清单 + 通过/不通过结论 |
 | `pm-prioritization-engine` | RICE/ICE/Kano 多模型排序 | 需求池 + 约束 → 排序 + Now/Next/Later |
@@ -76,7 +76,7 @@ description: |
 ```
 [想法/需求描述]
  → pm-advisory-board（可选：需求真伪与价值判断，输出「机会判断结论」）
- → pm-requirement-framer（输出并确认「产品需求框架」）
+ → pm-requirement-framer（输出并确认方向、方案大纲、功能模块与能力）
  → pm-prd-writer（输入已确认框架，输出 PRD + 待确认项清单）
  → pm-review-board（输入 PRD，输出分级问题清单）
  → pm-prd-writer 修订（输入问题清单，输出修订版 PRD）
