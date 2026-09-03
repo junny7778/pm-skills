@@ -1,25 +1,3 @@
-<h1 align="center">PM-Skill 2.0</h1>
-
-<p align="center"><code>pm-skills</code></p>
-
-<p align="center"><em>「说出你的产品问题，它给你调一支专家顾问团和执行团队」</em></p>
-
-<p align="center">
-  <img alt="Agent Skills Standard" src="https://img.shields.io/badge/Agent%20Skills-Standard-5aa524?style=for-the-badge">
-  <img alt="PM Skills" src="https://img.shields.io/badge/PM%20Skills-21-c8a500?style=for-the-badge">
-  <img alt="Advisory Board" src="https://img.shields.io/badge/Advisory%20Board-7%20Experts-5b5b5b?style=for-the-badge">
-  <img alt="Output" src="https://img.shields.io/badge/Output-PRD%20%C2%B7%20Review%20%C2%B7%20Roadmap%20%C2%B7%20Prototype-1888c8?style=for-the-badge">
-  <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor-7b2bd9?style=for-the-badge">
-</p>
-
-<p align="center">
-  <strong>License MIT</strong> · <strong>skills.sh Compatible Runtime</strong>
-</p>
-
-<p align="center">
-  公众号 / 小红书 / B站 / 知乎：空格的键盘 ｜ <a href="mailto:wzfh520@gmail.com">wzfh520@gmail.com</a>
-</p>
-
 PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 
 它把 PRD、评审、排序、路线图、数据分析、实验、埋点、调研、竞品、复盘、原型这些高频工作，做成可复用的 AI 工作流；也把产品专家和经典方法论蒸馏成一支能随时开会的私人顾问团。
