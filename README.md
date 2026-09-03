@@ -18,7 +18,7 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 
 ## 这是什么
 
-21 个 Claude Code / Agent Skill，覆盖产品经理从"开个会"到"写复盘"的完整日常，也覆盖从"这个需求该不该做"到"怎么把方案打磨到足够扎实"的关键判断。
+21 个 Codex Skill，覆盖产品经理从"开个会"到"写复盘"的日常工作，也覆盖从"这个需求该不该做"到"怎么把方案打磨扎实"的关键判断。
 
 每一个 Skill 都在回答同一个问题：**这件事我每次都要重新想一遍，能不能让 AI 替我想？**
 
@@ -87,27 +87,70 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 
 ## 怎么用
 
-### Codex
+Codex 把每个直接包含 `SKILL.md` 的目录识别为一个 Skill。不要把整个仓库目录当成单个 Skill 安装。
 
-项目内共享安装到仓库根目录的 `.agents/skills/`：
+### 安装到当前项目
 
-```text
-.agents/skills/pm-prd-writer/SKILL.md
+把需要的 Skill 复制到项目根目录的 `.agents/skills/`。这种方式只对当前项目生效，也可以随项目一起提交给团队。
+
+```bash
+mkdir -p .agents/skills
+cp -R /path/to/pm-skills/pm-prd-writer .agents/skills/
 ```
 
-个人安装可放到 `$HOME/.agents/skills/`。安装后可输入 `$pm-prd-writer` 显式调用，也可以直接说“写个需求文档”让 Codex 按描述自动选择。
+安装后的结构应为：
 
-如果要安装专家顾问团，把 `pm-advisory-suite/` 下需要的子目录分别复制到 `.agents/skills/`；不要把外层 `pm-advisory-suite` 当成一个 Skill。
+```text
+<项目根目录>/.agents/skills/pm-prd-writer/SKILL.md
+```
 
-### Claude Code
+### 安装到个人 Codex
 
-Claude Code 用户可把同一个 Skill 文件夹放进 `~/.claude/skills/`。每个目标目录都必须直接包含 `SKILL.md`。
+把需要的 Skill 复制到 `$CODEX_HOME/skills/`。如果没有设置 `CODEX_HOME`，默认目录是 `~/.codex/skills/`。
 
-### 工具兼容性
+```bash
+mkdir -p ~/.codex/skills
+cp -R /path/to/pm-skills/pm-prd-writer ~/.codex/skills/
+```
 
-- 文档、分析、评审和规划类 Skill 只依赖文件与基础计算能力，可跨 Agent Skills runtime 使用。
-- `pm-url2proto` 使用宿主提供的浏览器、网页读取或计算机操作能力，不绑定具体 MCP 工具名。
-- `pm-image2pencil` 只有在宿主具备可输出 `.pen` 的 Pencil 工具时才执行；否则先说明限制，并由用户选择 HTML 原型或宿主已有的设计工具格式。
+要安装整套 Skill，在仓库根目录运行：
+
+```bash
+mkdir -p ~/.codex/skills
+for skill in pm-*; do
+  [ -f "$skill/SKILL.md" ] && cp -R "$skill" ~/.codex/skills/
+done
+for skill in pm-advisory-suite/pm-*; do
+  [ -f "$skill/SKILL.md" ] && cp -R "$skill" ~/.codex/skills/
+done
+```
+
+专家顾问团位于 `pm-advisory-suite/`。安装时复制其中的具体子目录，例如：
+
+```bash
+cp -R /path/to/pm-skills/pm-advisory-suite/pm-advisory-board ~/.codex/skills/
+cp -R /path/to/pm-skills/pm-advisory-suite/pm-advisor-cagan ~/.codex/skills/
+```
+
+不要复制 `pm-advisory-suite` 外层目录，因为它本身不包含 `SKILL.md`。
+
+### 在 Codex 中调用
+
+可以显式输入 Skill 名称：
+
+```text
+$pm-prd-writer 根据下面的信息写一份 PRD：……
+$pm-experiment-designer 为这个改版设计 A/B 实验：……
+$pm-master 帮我判断应该使用哪些产品 Skill：……
+```
+
+也可以直接描述任务，例如“根据这些访谈记录整理需求”。Codex 会根据各 Skill 的 `description` 判断是否调用。任务涉及多个 Skill 时，先使用 `$pm-master` 分解和安排顺序。
+
+### Codex 工具要求
+
+- 文档、分析、评审和规划类 Skill 使用 Codex 的文件读取、编辑和基础计算能力。
+- `pm-url2proto` 需要 Codex 提供浏览器、网页读取或计算机操作能力。Skill 不假设固定的 MCP 工具名。
+- `pm-image2pencil` 需要能读写 `.pen` 的 Pencil 工具。如果当前 Codex 环境没有该能力，改用 `pm-image2proto` 输出 HTML，或先配置对应工具。
 
 常见触发方式：
 
@@ -165,7 +208,3 @@ AI 替代不了这些。但它可以让你在处理这些事情之前，不用�
 ## 相关项目
 
 - [career.skill](https://github.com/zephyrwang6/career.skill) — 不是产品经理？输入你的职业，AI 帮你拆一套属于你的 Skill 库
-
----
-
-made with Claude Code，以及大量不想再手写 PRD 的下午
