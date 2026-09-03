@@ -61,6 +61,24 @@ def validate() -> list[str]:
     stats_tests = ROOT / "pm-experiment-designer/tests/test_experiment_stats.py"
     if "scripts/experiment_stats.py" not in experiment_skill or not stats_script.is_file() or not stats_tests.is_file():
         errors.append("experiment skill must include and document its verified statistics script")
+
+    framer_path = ROOT / "pm-requirement-framer/SKILL.md"
+    if not framer_path.is_file():
+        errors.append("pm-requirement-framer must exist")
+    else:
+        framer_skill = framer_path.read_text(encoding="utf-8")
+        if "不输出 PRD" not in framer_skill or "PRD 就绪" not in framer_skill:
+            errors.append("pm-requirement-framer must own framing and enforce the PRD boundary")
+
+    prd_skill = (ROOT / "pm-prd-writer/SKILL.md").read_text(encoding="utf-8")
+    if "产品需求框架" not in prd_skill or "pm-requirement-framer" not in prd_skill:
+        errors.append("pm-prd-writer must require a product framework and route vague inputs")
+    if "把模糊需求转化为可评审" in prd_skill:
+        errors.append("pm-prd-writer must not claim ownership of vague requirements")
+
+    master_skill = (ROOT / "pm-master/SKILL.md").read_text(encoding="utf-8")
+    if "pm-requirement-framer" not in master_skill:
+        errors.append("pm-master must route vague requirements through pm-requirement-framer")
     return errors
 
 

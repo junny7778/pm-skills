@@ -1,7 +1,7 @@
 ---
 name: pm-master
 description: |
-  产品经理 Skill 库全局总控。管理 20 个 PM Skill：13 个执行工具（PRD、评审、优先级、路线图、数据分析、实验、埋点、问卷、竞品、复盘、原型×3）+ 7 个专家顾问团（Cagan、Torres、俞军、Mom Test、Story Mapping、Build Trap 及其总控）。
+  产品经理 Skill 库全局总控。套件共 22 个 Skill；本 Skill 调度 14 个执行工具（需求框架、PRD、评审、优先级、路线图、数据分析、实验、埋点、问卷、竞品、复盘、原型×3）和 7 个专家顾问团。
   能力：(1)根据用户描述的问题自动路由到最合适的 Skill (2)编排多 Skill 工作流链路，把上一步产出接力给下一步 (3)判断类问题转交 pm-advisory-board 组织专家评审。
   触发词：「pm-master」「产品总控」「我该用哪个 Skill」「帮我推进这个需求」「从头到尾走一遍」「完整链路」，
   或者用户描述了一个产品工作场景但没有指明用哪个 Skill、或一个任务明显需要多个 Skill 接力完成时，优先使用本 Skill。
@@ -17,7 +17,8 @@ description: |
 
 | Skill | 一句话职责 | 典型输入 → 输出 |
 |-------|-----------|----------------|
-| `pm-prd-writer` | 模糊需求 → 可评审 PRD | 一段描述/会议纪要 → PRD + 待确认项清单 |
+| `pm-requirement-framer` | 模糊需求 → 已确认需求框架 | 想法/反馈/会议纪要 → 方向比较 + 范围 + PRD 就绪结论 |
+| `pm-prd-writer` | 已确认需求框架 → 可评审 PRD | 需求框架/现有 PRD → PRD + 待确认项清单 |
 | `pm-review-board` | 六角色模拟评审 | PRD/原型 → 分级问题清单 + 通过/不通过结论 |
 | `pm-prioritization-engine` | RICE/ICE/Kano 多模型排序 | 需求池 + 约束 → 排序 + Now/Next/Later |
 | `pm-roadmap-planner` | 目标+产能 → 版本路线图 | 季度目标/人力/依赖 → 里程碑 + 甘特图 |
@@ -49,7 +50,8 @@ description: |
 
 | 用户在说什么 | 路由到 | 备注 |
 |---|---|---|
-| 写 PRD / 整理需求文档 | `pm-prd-writer` | 需求真伪存疑时，先建议过一遍顾问团 |
+| 想法还模糊 / 梳理需求 / 确定产品方向和范围 | `pm-requirement-framer` | 不输出 PRD；需求真伪存疑时可先过顾问团 |
+| 基于已确认需求框架写 PRD / 补全现有 PRD | `pm-prd-writer` | 没有确认过的需求框架时先转 requirement-framer |
 | 帮我看看这个 PRD / 过评审 | `pm-review-board` | |
 | 这堆需求怎么排 / 砍需求 | `pm-prioritization-engine` | |
 | 排期 / 版本规划 / 里程碑 | `pm-roadmap-planner` | 只排序不排期 → prioritization-engine |
@@ -74,7 +76,8 @@ description: |
 ```
 [想法/需求描述]
  → pm-advisory-board（可选：需求真伪与价值判断，输出「机会判断结论」）
- → pm-prd-writer（输出 PRD + 待确认项清单）
+ → pm-requirement-framer（输出并确认「产品需求框架」）
+ → pm-prd-writer（输入已确认框架，输出 PRD + 待确认项清单）
  → pm-review-board（输入 PRD，输出分级问题清单）
  → pm-prd-writer 修订（输入问题清单，输出修订版 PRD）
  → pm-tracking-spec-writer（输入 PRD 的核心链路，输出埋点方案）
@@ -110,6 +113,7 @@ description: |
 ```
 [竞品名单] → pm-competitor-deconstructor（差异化建议）
  → pm-advisory-board（可选：该不该跟进的判断）
+ → pm-requirement-framer（确定跟进方向与范围）
  → pm-prd-writer → 接链路 A 后半段
 ```
 

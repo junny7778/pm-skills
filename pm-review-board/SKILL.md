@@ -327,7 +327,7 @@ description: |
 如果用户提交的材料只有一两段话或者几张截图，不足以做正式评审：
 1. 不输出完整评审报告
 2. 改为输出「材料补充建议」，列出需要补齐的内容
-3. 建议用户用 pm-prd-writer 先生成结构化 PRD，再来评审
+3. 如果产品方向、目标用户或范围尚未确认，建议先用 `pm-requirement-framer`；已有确认框架但缺 PRD 时，再用 `pm-prd-writer`
 
 ### 用户只要求某个角色的意见
 
@@ -338,7 +338,7 @@ description: |
 如果 PRD 的问题不是某几个细节，而是整体结构混乱、核心流程不清晰、目标不明确，不要逐条列问题（那样会列几十条），而是：
 1. 指出核心的结构性问题（不超过 3 条）
 2. 给出重写建议
-3. 建议用 pm-prd-writer 重新生成
+3. 方向与范围有问题时返回 `pm-requirement-framer` 更新框架；仅规格结构有问题时用 `pm-prd-writer` 重写
 
 ---
 
@@ -347,6 +347,6 @@ description: |
 本 Skill 是 pm-skills 工作流的一环，由 `pm-master` 总控统一路由。
 
 - **上游**：`pm-prd-writer`（其「待确认项清单」是评审的重点抓手，若材料来自它，优先核对待确认项）
-- **下游**：`pm-prd-writer`（按问题清单修订 PRD 后回来复评）、`pm-roadmap-planner`（评审通过后排期）
+- **下游**：`pm-prd-writer`（按规格问题修订 PRD）、`pm-requirement-framer`（方向或范围需要重定）、`pm-roadmap-planner`（评审通过后排期）
 
 交接规则：链路模式下，完成后输出一段「交接摘要」（≤10 行：本步结论 + 下一步所需输入），供下一个 Skill 直接使用。

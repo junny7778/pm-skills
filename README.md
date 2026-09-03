@@ -12,13 +12,13 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 
 **3. 全部 Skill 打通上下游。** 每个执行 Skill 都声明上游输入和下游交付，链路模式下用「交接摘要」接力，不用每一步重新解释上下文；命名统一成 `pm-*`。
 
-**4. 高频 Skill 深度升级。** `pm-prd-writer` 增加阶段零需求体检，`pm-review-board` 增加三档评审和意见质量红线，`pm-prioritization-engine` 增加敏感性分析和高分歧裁决。
+**4. 需求定义与 PRD 写作拆开。** `pm-requirement-framer` 先确认问题、方向和范围，`pm-prd-writer` 只根据已确认的需求框架编写 PRD。
 
 ---
 
 ## 这是什么
 
-21 个 Codex Skill，覆盖产品经理从"开个会"到"写复盘"的日常工作，也覆盖从"这个需求该不该做"到"怎么把方案打磨扎实"的关键判断。
+22 个 Codex Skill，覆盖产品经理从"开个会"到"写复盘"的日常工作，也覆盖从"这个需求该不该做"到"怎么把方案打磨扎实"的关键判断。
 
 每一个 Skill 都在回答同一个问题：**这件事我每次都要重新想一遍，能不能让 AI 替我想？**
 
@@ -27,7 +27,7 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 这套仓库现在分成三层能力：
 
 - **全局总控**：`pm-master`，唯一入口，分诊问题、路由 Skill、编排链路。
-- **执行工具箱**：13 个生产型 Skill，帮你写 PRD、做路线图、设计实验、写埋点、复盘、拆竞品、生成原型。
+- **执行工具箱**：14 个生产型 Skill，先梳理需求框架，再写 PRD、做路线图、设计实验、写埋点、复盘、拆竞品和生成原型。
 - **专家顾问团**：7 个 Advisory Skill，把 Cagan、Teresa Torres、俞军，以及 Mom Test、Story Mapping、Escaping the Build Trap 这些专家视角和方法论请进评审会。
 
 ---
@@ -50,14 +50,15 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 
 ---
 
-## 21 个 Skill，一句话说清楚
+## 22 个 Skill，一句话说清楚
 
 ### 执行工具箱：把产品日常做快
 
 | Skill | 干什么 |
 |-------|--------|
 | `pm-master` | **全局总控**：分诊问题 → 路由 Skill → 编排工作流链路 |
-| `pm-prd-writer` | 把一段模糊的描述变成可以过评审的 PRD |
+| `pm-requirement-framer` | 把模糊想法整理成经过确认、可以进入 PRD 的需求框架 |
+| `pm-prd-writer` | 根据已确认的需求框架编写可开发、可测试、可评审的 PRD |
 | `pm-review-board` | 模拟 6 个角色同时喷你的需求，提前发现问题 |
 | `pm-prioritization-engine` | RICE/ICE/Kano 三套模型同时打分，需求排序不再拍脑袋 |
 | `pm-roadmap-planner` | 输入目标和人力，输出带甘特图的路线图 |
@@ -139,7 +140,8 @@ cp -R /path/to/pm-skills/pm-advisory-suite/pm-advisor-cagan ~/.codex/skills/
 可以显式输入 Skill 名称：
 
 ```text
-$pm-prd-writer 根据下面的信息写一份 PRD：……
+$pm-requirement-framer 帮我梳理这个模糊需求的方向和范围：……
+$pm-prd-writer 根据下面的产品需求框架写一份 PRD：……
 $pm-experiment-designer 为这个改版设计 A/B 实验：……
 $pm-master 帮我判断应该使用哪些产品 Skill：……
 ```
@@ -170,7 +172,7 @@ $pm-master 帮我判断应该使用哪些产品 Skill：……
 
 这时候，原来的执行型 Skill 接上后半程：
 
-`pm-prd-writer 写 PRD → pm-review-board 预审 → pm-tracking-spec-writer 写埋点 → pm-experiment-designer 设计实验 → pm-postmortem-writer 做复盘`
+`pm-requirement-framer 确认需求框架 → pm-prd-writer 写 PRD → pm-review-board 预审 → pm-tracking-spec-writer 写埋点 → pm-experiment-designer 设计实验 → pm-postmortem-writer 做复盘`
 
 ---
 
@@ -182,8 +184,8 @@ $pm-master 帮我判断应该使用哪些产品 Skill：……
 **pm-experiment-designer 解决了一个长期问题。**
 A/B 实验方案写出来容易，写对很难。样本量算没算够、止损规则定没定、判定标准是不是在实验开始前就定好了——这些细节之前全靠经验，现在有了检查清单。
 
-**pm-prd-writer 的价值在补漏，不在写。**
-PRD 的正文自己写其实不慢，慢的是反复被问"这个异常流程处理了吗""埋点需求呢""非功能需求没有"。这个 Skill 会在生成 PRD 之后自动补一遍，漏不了。
+**pm-prd-writer 只写已经确认方向的需求。**
+模糊想法先交给 `pm-requirement-framer`。框架确认后，`pm-prd-writer` 再补齐异常流程、埋点、非功能需求和验收标准，避免用一份很完整的文档掩盖方向错误。
 
 **pm-advisory-board 的价值在于让分歧提前出现。**
 很多方案不是缺一个结论，而是缺一张分歧地图。Cagan 会问风险和团队，Torres 会问证据和机会，俞军会问用户价值和交易成本，三本方法论会把访谈、切片、战略落地补上。它不替你拍板，但会让你知道自己到底在赌什么。
