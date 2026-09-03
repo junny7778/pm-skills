@@ -1,25 +1,3 @@
-<h1 align="center">PM-Skill 2.0</h1>
-
-<p align="center"><code>pm-skills</code></p>
-
-<p align="center"><em>「说出你的产品问题，它给你调一支专家顾问团和执行团队」</em></p>
-
-<p align="center">
-  <img alt="Agent Skills Standard" src="https://img.shields.io/badge/Agent%20Skills-Standard-5aa524?style=for-the-badge">
-  <img alt="PM Skills" src="https://img.shields.io/badge/PM%20Skills-21-c8a500?style=for-the-badge">
-  <img alt="Advisory Board" src="https://img.shields.io/badge/Advisory%20Board-7%20Experts-5b5b5b?style=for-the-badge">
-  <img alt="Output" src="https://img.shields.io/badge/Output-PRD%20%C2%B7%20Review%20%C2%B7%20Roadmap%20%C2%B7%20Prototype-1888c8?style=for-the-badge">
-  <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor-7b2bd9?style=for-the-badge">
-</p>
-
-<p align="center">
-  <strong>License MIT</strong> · <strong>skills.sh Compatible Runtime</strong>
-</p>
-
-<p align="center">
-  公众号 / 小红书 / B站 / 知乎：空格的键盘 ｜ <a href="mailto:wzfh520@gmail.com">wzfh520@gmail.com</a>
-</p>
-
 PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 
 它把 PRD、评审、排序、路线图、数据分析、实验、埋点、调研、竞品、复盘、原型这些高频工作，做成可复用的 AI 工作流；也把产品专家和经典方法论蒸馏成一支能随时开会的私人顾问团。
@@ -34,13 +12,13 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 
 **3. 全部 Skill 打通上下游。** 每个执行 Skill 都声明上游输入和下游交付，链路模式下用「交接摘要」接力，不用每一步重新解释上下文；命名统一成 `pm-*`。
 
-**4. 高频 Skill 深度升级。** `pm-prd-writer` 增加阶段零需求体检，`pm-review-board` 增加三档评审和意见质量红线，`pm-prioritization-engine` 增加敏感性分析和高分歧裁决。
+**4. 需求定义与 PRD 写作拆开。** `pm-requirement-framer` 先确认问题、方向和范围，`pm-prd-writer` 只根据已确认的需求框架编写 PRD。
 
 ---
 
 ## 这是什么
 
-21 个 Claude Code / Agent Skill，覆盖产品经理从"开个会"到"写复盘"的完整日常，也覆盖从"这个需求该不该做"到"怎么把方案打磨到足够扎实"的关键判断。
+22 个 Codex Skill，覆盖产品经理从"开个会"到"写复盘"的日常工作，也覆盖从"这个需求该不该做"到"怎么把方案打磨扎实"的关键判断。
 
 每一个 Skill 都在回答同一个问题：**这件事我每次都要重新想一遍，能不能让 AI 替我想？**
 
@@ -49,7 +27,7 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 这套仓库现在分成三层能力：
 
 - **全局总控**：`pm-master`，唯一入口，分诊问题、路由 Skill、编排链路。
-- **执行工具箱**：13 个生产型 Skill，帮你写 PRD、做路线图、设计实验、写埋点、复盘、拆竞品、生成原型。
+- **执行工具箱**：14 个生产型 Skill，先梳理需求框架，再写 PRD、做路线图、设计实验、写埋点、复盘、拆竞品和生成原型。
 - **专家顾问团**：7 个 Advisory Skill，把 Cagan、Teresa Torres、俞军，以及 Mom Test、Story Mapping、Escaping the Build Trap 这些专家视角和方法论请进评审会。
 
 ---
@@ -72,14 +50,15 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 
 ---
 
-## 21 个 Skill，一句话说清楚
+## 22 个 Skill，一句话说清楚
 
 ### 执行工具箱：把产品日常做快
 
 | Skill | 干什么 |
 |-------|--------|
 | `pm-master` | **全局总控**：分诊问题 → 路由 Skill → 编排工作流链路 |
-| `pm-prd-writer` | 把一段模糊的描述变成可以过评审的 PRD |
+| `pm-requirement-framer` | 把模糊想法整理成方向、产品方案大纲、功能模块和核心能力 |
+| `pm-prd-writer` | 根据已确认的需求框架编写可开发、可测试、可评审的 PRD |
 | `pm-review-board` | 模拟 6 个角色同时喷你的需求，提前发现问题 |
 | `pm-prioritization-engine` | RICE/ICE/Kano 三套模型同时打分，需求排序不再拍脑袋 |
 | `pm-roadmap-planner` | 输入目标和人力，输出带甘特图的路线图 |
@@ -109,19 +88,71 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 
 ## 怎么用
 
-把任意一个文件夹放进 Claude Code 的 skills 目录：
+Codex 把每个直接包含 `SKILL.md` 的目录识别为一个 Skill。不要把整个仓库目录当成单个 Skill 安装。
 
-```
-~/.claude/skills/pm-prd-writer/
+### 安装到当前项目
+
+把需要的 Skill 复制到项目根目录的 `.agents/skills/`。这种方式只对当前项目生效，也可以随项目一起提交给团队。
+
+```bash
+mkdir -p .agents/skills
+cp -R /path/to/pm-skills/pm-prd-writer .agents/skills/
 ```
 
-然后在 Claude Code 里说"写个需求文档"，它就知道该怎么做了。
+安装后的结构应为：
 
-如果你想用专家顾问团，可以把 `pm-advisory-suite/` 下面的 7 个子目录复制到 skills 目录，或者先只装 `pm-advisory-board`：
+```text
+<项目根目录>/.agents/skills/pm-prd-writer/SKILL.md
+```
 
+### 安装到个人 Codex
+
+把需要的 Skill 复制到 `$CODEX_HOME/skills/`。如果没有设置 `CODEX_HOME`，默认目录是 `~/.codex/skills/`。
+
+```bash
+mkdir -p ~/.codex/skills
+cp -R /path/to/pm-skills/pm-prd-writer ~/.codex/skills/
 ```
-~/.claude/skills/pm-advisory-board/
+
+要安装整套 Skill，在仓库根目录运行：
+
+```bash
+mkdir -p ~/.codex/skills
+for skill in pm-*; do
+  [ -f "$skill/SKILL.md" ] && cp -R "$skill" ~/.codex/skills/
+done
+for skill in pm-advisory-suite/pm-*; do
+  [ -f "$skill/SKILL.md" ] && cp -R "$skill" ~/.codex/skills/
+done
 ```
+
+专家顾问团位于 `pm-advisory-suite/`。安装时复制其中的具体子目录，例如：
+
+```bash
+cp -R /path/to/pm-skills/pm-advisory-suite/pm-advisory-board ~/.codex/skills/
+cp -R /path/to/pm-skills/pm-advisory-suite/pm-advisor-cagan ~/.codex/skills/
+```
+
+不要复制 `pm-advisory-suite` 外层目录，因为它本身不包含 `SKILL.md`。
+
+### 在 Codex 中调用
+
+可以显式输入 Skill 名称：
+
+```text
+$pm-requirement-framer 帮我梳理这个模糊需求的方向和范围：……
+$pm-prd-writer 根据下面的产品需求框架写一份 PRD：……
+$pm-experiment-designer 为这个改版设计 A/B 实验：……
+$pm-master 帮我判断应该使用哪些产品 Skill：……
+```
+
+也可以直接描述任务，例如“根据这些访谈记录整理需求”。Codex 会根据各 Skill 的 `description` 判断是否调用。任务涉及多个 Skill 时，先使用 `$pm-master` 分解和安排顺序。
+
+### Codex 工具要求
+
+- 文档、分析、评审和规划类 Skill 使用 Codex 的文件读取、编辑和基础计算能力。
+- `pm-url2proto` 需要 Codex 提供浏览器、网页读取或计算机操作能力。Skill 不假设固定的 MCP 工具名。
+- `pm-image2pencil` 需要能读写 `.pen` 的 Pencil 工具。如果当前 Codex 环境没有该能力，改用 `pm-image2proto` 输出 HTML，或先配置对应工具。
 
 常见触发方式：
 
@@ -141,7 +172,7 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 
 这时候，原来的执行型 Skill 接上后半程：
 
-`pm-prd-writer 写 PRD → pm-review-board 预审 → pm-tracking-spec-writer 写埋点 → pm-experiment-designer 设计实验 → pm-postmortem-writer 做复盘`
+`pm-requirement-framer 确认需求框架 → pm-prd-writer 写 PRD → pm-review-board 预审 → pm-tracking-spec-writer 写埋点 → pm-experiment-designer 设计实验 → pm-postmortem-writer 做复盘`
 
 ---
 
@@ -153,8 +184,8 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 **pm-experiment-designer 解决了一个长期问题。**
 A/B 实验方案写出来容易，写对很难。样本量算没算够、止损规则定没定、判定标准是不是在实验开始前就定好了——这些细节之前全靠经验，现在有了检查清单。
 
-**pm-prd-writer 的价值在补漏，不在写。**
-PRD 的正文自己写其实不慢，慢的是反复被问"这个异常流程处理了吗""埋点需求呢""非功能需求没有"。这个 Skill 会在生成 PRD 之后自动补一遍，漏不了。
+**pm-prd-writer 只写已经确认方向的需求。**
+模糊想法先交给 `pm-requirement-framer`。框架确认后，`pm-prd-writer` 再补齐异常流程、埋点、非功能需求和验收标准，避免用一份很完整的文档掩盖方向错误。
 
 **pm-advisory-board 的价值在于让分歧提前出现。**
 很多方案不是缺一个结论，而是缺一张分歧地图。Cagan 会问风险和团队，Torres 会问证据和机会，俞军会问用户价值和交易成本，三本方法论会把访谈、切片、战略落地补上。它不替你拍板，但会让你知道自己到底在赌什么。
@@ -179,7 +210,3 @@ AI 替代不了这些。但它可以让你在处理这些事情之前，不用�
 ## 相关项目
 
 - [career.skill](https://github.com/zephyrwang6/career.skill) — 不是产品经理？输入你的职业，AI 帮你拆一套属于你的 Skill 库
-
----
-
-made with Claude Code，以及大量不想再手写 PRD 的下午
