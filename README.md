@@ -109,19 +109,27 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 
 ## 怎么用
 
-把任意一个文件夹放进 Claude Code 的 skills 目录：
+### Codex
 
-```
-~/.claude/skills/pm-prd-writer/
+项目内共享安装到仓库根目录的 `.agents/skills/`：
+
+```text
+.agents/skills/pm-prd-writer/SKILL.md
 ```
 
-然后在 Claude Code 里说"写个需求文档"，它就知道该怎么做了。
+个人安装可放到 `$HOME/.agents/skills/`。安装后可输入 `$pm-prd-writer` 显式调用，也可以直接说“写个需求文档”让 Codex 按描述自动选择。
 
-如果你想用专家顾问团，可以把 `pm-advisory-suite/` 下面的 7 个子目录复制到 skills 目录，或者先只装 `pm-advisory-board`：
+如果要安装专家顾问团，把 `pm-advisory-suite/` 下需要的子目录分别复制到 `.agents/skills/`；不要把外层 `pm-advisory-suite` 当成一个 Skill。
 
-```
-~/.claude/skills/pm-advisory-board/
-```
+### Claude Code
+
+Claude Code 用户可把同一个 Skill 文件夹放进 `~/.claude/skills/`。每个目标目录都必须直接包含 `SKILL.md`。
+
+### 工具兼容性
+
+- 文档、分析、评审和规划类 Skill 只依赖文件与基础计算能力，可跨 Agent Skills runtime 使用。
+- `pm-url2proto` 使用宿主提供的浏览器、网页读取或计算机操作能力，不绑定具体 MCP 工具名。
+- `pm-image2pencil` 只有在宿主具备可输出 `.pen` 的 Pencil 工具时才执行；否则先说明限制，并由用户选择 HTML 原型或宿主已有的设计工具格式。
 
 常见触发方式：
 

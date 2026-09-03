@@ -314,7 +314,7 @@
       <li><input type="checkbox"> 时段覆盖完整（含工作日+周末）</li>
       <li><input type="checkbox"> 渠道来源各组一致</li>
       <li><input type="checkbox"> 地域分布各组一致</li>
-      <li><input type="checkbox"> SRM 检验（分流比例偏差 < 1%）</li>
+      <li><input type="checkbox"> SRM 检验通过（χ² 检验 p ≥ 0.01）</li>
     </ul>
   </div>
 
@@ -461,7 +461,7 @@
       </div>
       <div class="stoploss-item">
         <span class="sl-icon">&#9888;</span>
-        <span>SRM 检验失败（分流比例偏差 &gt; 3%）</span>
+        <span>SRM 检验失败（χ² 检验 p &lt; 0.01）</span>
       </div>
     </div>
 
