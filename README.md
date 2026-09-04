@@ -18,7 +18,7 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 
 ## 这是什么
 
-22 个 Codex Skill，覆盖产品经理从"开个会"到"写复盘"的日常工作，也覆盖从"这个需求该不该做"到"怎么把方案打磨扎实"的关键判断。
+23 个 Codex Skill，覆盖产品经理从"开个会"到"写复盘"的日常工作，也覆盖从"这个需求该不该做"到"怎么把方案打磨扎实"的关键判断。
 
 每一个 Skill 都在回答同一个问题：**这件事我每次都要重新想一遍，能不能让 AI 替我想？**
 
@@ -27,7 +27,7 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 这套仓库现在分成三层能力：
 
 - **全局总控**：`pm-master`，唯一入口，分诊问题、路由 Skill、编排链路。
-- **执行工具箱**：14 个生产型 Skill，先梳理需求框架，再写 PRD、做路线图、设计实验、写埋点、复盘、拆竞品和生成原型。
+- **执行工具箱**：15 个生产型 Skill，先梳理需求框架，再写 PRD、做客户方案与报价、路线图、实验、埋点、复盘、竞品和原型。
 - **专家顾问团**：7 个 Advisory Skill，把 Cagan、Teresa Torres、俞军，以及 Mom Test、Story Mapping、Escaping the Build Trap 这些专家视角和方法论请进评审会。
 
 ---
@@ -50,7 +50,7 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 
 ---
 
-## 22 个 Skill，一句话说清楚
+## 23 个 Skill，一句话说清楚
 
 ### 执行工具箱：把产品日常做快
 
@@ -59,6 +59,7 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 | `pm-master` | **全局总控**：分诊问题 → 路由 Skill → 编排工作流链路 |
 | `pm-requirement-framer` | 把模糊想法整理成方向、产品方案大纲、功能模块和核心能力 |
 | `pm-prd-writer` | 根据已确认的需求框架编写可开发、可测试、可评审的 PRD |
+| `pm-client-proposal-writer` | 把需求整理成客户看得懂的交付方案、周期、工时和报价明细 |
 | `pm-review-board` | 模拟 6 个角色同时喷你的需求，提前发现问题 |
 | `pm-prioritization-engine` | RICE/ICE/Kano 三套模型同时打分，需求排序不再拍脑袋 |
 | `pm-roadmap-planner` | 输入目标和人力，输出带甘特图的路线图 |
@@ -142,6 +143,7 @@ cp -R /path/to/pm-skills/pm-advisory-suite/pm-advisor-cagan ~/.codex/skills/
 ```text
 $pm-requirement-framer 帮我梳理这个模糊需求的方向和范围：……
 $pm-prd-writer 根据下面的产品需求框架写一份 PRD：……
+$pm-client-proposal-writer 根据这份需求框架输出客户方案和报价：……
 $pm-experiment-designer 为这个改版设计 A/B 实验：……
 $pm-master 帮我判断应该使用哪些产品 Skill：……
 ```
@@ -172,7 +174,7 @@ $pm-master 帮我判断应该使用哪些产品 Skill：……
 
 这时候，原来的执行型 Skill 接上后半程：
 
-`pm-requirement-framer 确认需求框架 → pm-prd-writer 写 PRD → pm-review-board 预审 → pm-tracking-spec-writer 写埋点 → pm-experiment-designer 设计实验 → pm-postmortem-writer 做复盘`
+`pm-requirement-framer 确认需求框架 → pm-prd-writer 写 PRD → pm-client-proposal-writer 输出客户方案与报价（按需）→ pm-review-board 预审 → pm-tracking-spec-writer 写埋点 → pm-experiment-designer 设计实验 → pm-postmortem-writer 做复盘`
 
 ---
 
