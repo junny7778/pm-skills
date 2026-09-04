@@ -30,6 +30,8 @@ PM-Skill 是一套给产品经理用的"产品工作 Skill 蒸馏工厂"。
 - **执行工具箱**：15 个生产型 Skill，先梳理需求框架，再写 PRD、做客户方案与报价、路线图、实验、埋点、复盘、竞品和原型。
 - **专家顾问团**：7 个 Advisory Skill，把 Cagan、Teresa Torres、俞军，以及 Mom Test、Story Mapping、Escaping the Build Trap 这些专家视角和方法论请进评审会。
 
+此外，仓库提供通用的 `multi-agent-workflow`，用于根据任务动态拆分职责、并行执行、设置独立审查关卡并整合结果。它不绑定产品经理角色或固定工作流。
+
 ---
 
 ## 创作来源
@@ -146,6 +148,7 @@ $pm-prd-writer 根据下面的产品需求框架写一份 PRD：……
 $pm-client-proposal-writer 根据这份需求框架输出客户方案和报价：……
 $pm-experiment-designer 为这个改版设计 A/B 实验：……
 $pm-master 帮我判断应该使用哪些产品 Skill：……
+$multi-agent-workflow 使用多个子 Agent 调查、执行并独立验证这个任务：……
 ```
 
 也可以直接描述任务，例如“根据这些访谈记录整理需求”。Codex 会根据各 Skill 的 `description` 判断是否调用。任务涉及多个 Skill 时，先使用 `$pm-master` 分解和安排顺序。
